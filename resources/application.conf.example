@@ -1,0 +1,28 @@
+ktor {
+    deployment {
+        sslPort = 8445
+        port = 8081
+        port = ${?PORT}
+    }
+
+    security {
+        ssl {
+            keyStore = keystore.jks
+            keyAlias = surequalifiedAlias
+            keyStorePassword = TODO
+            privateKeyPassword = TODO
+        }
+    }
+
+    application {
+        modules = [ main.kotlin.qscd.ApplicationKt.module ]
+    }
+
+    hikariconfig = "resources/dbconfig.properties"
+}
+
+jwt {
+    secret = secret
+    issuer = surequalified.qscd
+    validity = 3600000
+}
